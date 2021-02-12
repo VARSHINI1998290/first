@@ -1,26 +1,29 @@
-import React,{useState} from 'react';
-import One from './one';
-function App () {
-    const[num,setNum]=useState("");
-    const[fullNum,setfullNum]=useState("");
-  
-const onSubmit = () => { 
-    setfullNum(num);
-} 
-const inputEvent = (event) => {
-    setNum(event.target.value);
+import React, { useState } from "react";
+import One from "./one";
+function App() {
+	const [num, setNum] = useState(null);
+	const [visible, setVisible] = useState(true);
+
+	const onSubmit = () => {
+		setVisible(false);
+	};
+
+	return (
+		<>
+			{visible ? (
+				<div>
+					<input
+						type="number"
+						placeholder="Input a Num.."
+						onChange={(e) => setNum(e.target.value)}
+						value={num}
+					/>
+					<button onClick={onSubmit}>SUBMIT</button>
+				</div>
+			) : (
+				<One num={num} />
+			)}
+		</>
+	);
 }
-    return (
-        <>
-            <h1>{fullNum}</h1>
-<input type="num" placeholder="Input a Num.." 
-onChange={inputEvent} />
-<button onClick={onSubmit} >SUBMIT</button>
-
-
-<One />
-
-  </>
-    );
-    }
 export default App;
